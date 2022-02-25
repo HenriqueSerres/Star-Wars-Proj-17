@@ -5,6 +5,7 @@ import fetchAPI from '../service/fetchAPI';
 
 function PlanetProvider({ children }) {
   const [planets, setPlanets] = useState([]);
+  const [filterByName, setFilterByName] = useState({ name: '' });
 
   const getPlantes = async () => {
     const results = await fetchAPI();
@@ -15,7 +16,7 @@ function PlanetProvider({ children }) {
     getPlantes();
   }, []);
 
-  const value = { planets };
+  const value = { planets, filterByName, setFilterByName, setPlanets };
 
   return (
     <PlanetContext.Provider value={ value }>
