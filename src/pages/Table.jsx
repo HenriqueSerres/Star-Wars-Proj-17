@@ -1,22 +1,69 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
+const COMPARISON = ['maior que', 'menor que', 'igual a'];
+const COLUMN = ['population', 'orbital_period', 'diameter',
+  'rotation_period', 'surface_water'];
+
 function Table() {
+  const [column, setColumn] = useState('population');
+  const [comparison, setComparison] = useState('maior que');
+  const [numericValue, setNumericValue] = useState('0');
   const {
     planets,
     filterByName,
     getFilteredPlanets,
+    setFilterByNumericValues,
   } = useContext(PlanetContext);
 
   return (
     <>
       <form>
         <input
+          placeholder="Filtre planetas por nome"
           type="text"
           value={ filterByName.name }
           data-testid="name-filter"
           onChange={ getFilteredPlanets }
         />
+        <select
+          type="select"
+          data-testid="column-filter"
+          value={ column }
+          onChange={ ({ target }) => setColumn(target.value) }
+        >
+          { COLUMN.map((opt) => (
+            <option key={ opt } value={ opt }>{ opt }</option>
+          ))}
+        </select>
+        <select
+          type="select"
+          data-testid="comparison-filter"
+          value={ comparison }
+          onChange={ ({ target }) => setComparison(target.value) }
+        >
+          { COMPARISON.map((opt) => (
+            <option key={ opt } value={ opt }>{ opt }</option>
+          ))}
+        </select>
+        <input
+          placeholder="Valor"
+          type="number"
+          data-testid="value-filter"
+          value={ numericValue || 0 }
+          onChange={ ({ target }) => setNumericValue(target.value) }
+        />
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ () => setFilterByNumericValues((prevState) => [...prevState, {
+            column,
+            comparison,
+            numericValue,
+          }]) }
+        >
+          Filtrar
+        </button>
       </form>
       <table>
         <thead>
@@ -38,7 +85,6 @@ function Table() {
         </thead>
         <tbody>
           {planets
-            .filter((plane) => plane.name.includes(filterByName.name))
             .map((planet) => (
               <tr key={ planet.name }>
                 <td>{ planet.name }</td>
