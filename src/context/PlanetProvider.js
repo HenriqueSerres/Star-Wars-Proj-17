@@ -8,6 +8,18 @@ function PlanetProvider({ children }) {
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [filteredPlanets, setFilteredPlanets] = useState([]);
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [columnOptions, setColumnOptions] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
+  const [comparisonOptions, setComparisonOptions] = useState([
+    'maior que',
+    'menor que',
+    'igual a',
+  ]);
 
   const getPlantes = async () => {
     const results = await fetchAPI();
@@ -40,7 +52,6 @@ function PlanetProvider({ children }) {
       const newPlanets = planets
         .filter((planet) => {
           if (comparison === 'maior que') {
-            console.log('valor', Number(planet[column]));
             return Number(planet[column]) > Number(numericValue);
           }
           if (comparison === 'menor que') {
@@ -51,14 +62,20 @@ function PlanetProvider({ children }) {
           }
           return null;
         });
-      setPlanets(newPlanets);
+      const newOptions = columnOptions.filter((col) => col !== column);
+      setColumnOptions(newOptions);
+      const newComparison = comparisonOptions.filter((com) => com !== comparison);
+      setComparisonOptions(newComparison);
+      if (planets.length !== newPlanets.length) setPlanets(newPlanets);
     }
-  }, [filterByNumericValues]);
+  }, [filterByNumericValues, planets]);
 
   const value = {
     planets,
     filterByName,
     filteredPlanets,
+    columnOptions,
+    comparisonOptions,
     setFilterByName,
     setPlanets,
     setFilteredPlanets,

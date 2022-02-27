@@ -1,19 +1,18 @@
 import React, { useContext, useState } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
-const COMPARISON = ['maior que', 'menor que', 'igual a'];
-const COLUMN = ['population', 'orbital_period', 'diameter',
-  'rotation_period', 'surface_water'];
-
 function Table() {
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
   const [numericValue, setNumericValue] = useState('0');
+
   const {
     planets,
     filterByName,
     getFilteredPlanets,
     setFilterByNumericValues,
+    columnOptions,
+    comparisonOptions,
   } = useContext(PlanetContext);
 
   return (
@@ -32,7 +31,7 @@ function Table() {
           value={ column }
           onChange={ ({ target }) => setColumn(target.value) }
         >
-          { COLUMN.map((opt) => (
+          { columnOptions.map((opt) => (
             <option key={ opt } value={ opt }>{ opt }</option>
           ))}
         </select>
@@ -42,7 +41,7 @@ function Table() {
           value={ comparison }
           onChange={ ({ target }) => setComparison(target.value) }
         >
-          { COMPARISON.map((opt) => (
+          { comparisonOptions.map((opt) => (
             <option key={ opt } value={ opt }>{ opt }</option>
           ))}
         </select>
