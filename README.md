@@ -1,16 +1,3 @@
-## Termos e acordos
-
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
-
-# Boas vindas ao repositório do projeto Starwars Planets Search em context api e hooks!
-![img](projectIntro.gif)
-
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo e, se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
-
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
-
----
-
 # Sumário
 
 - [Habilidades](#habilidades)
@@ -67,16 +54,6 @@ Lembre-se que você pode consultar nosso conteúdo sobre Git & GitHub no Course 
 ## Desenvolvimento
 
 Este repositório já contém um _template_ de uma aplicação React criado e configurado. Após clonar o projeto e instalar as dependências (mais sobre isso abaixo), você **poderá** criara a sua branch e iniciar o trabalho.
-
----
-
-## Data de entrega
-
-  - Projeto individual.
-
-  - Serão `2` dias de projeto.
-
-  - Data de entrega para avaliação final do projeto: `04/03/2022 14:00`.
 
 ---
 
